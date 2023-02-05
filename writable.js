@@ -86,39 +86,4 @@ class FileWriteStream extends Writable {
   }
 }
 
-(() => {
-  const stream = new FileWriteStream({
-    filename: "./read.txt",
-    flags: "w",
-  });
-
-  let i = 0;
-  console.time("write");
-  const num = 1000;
-
-  function write() {
-    while (i < num) {
-      const w = stream.write(` ${i} `);
-      if (i === num - 1) stream.end();
-      if (!w) {
-        break;
-      }
-      i++;
-    }
-  }
-  write();
-
-  stream.on("open", () => {
-    console.log("File that will be written has been opened");
-  });
-
-  stream.on("drain", () => {
-    i++;
-    write();
-  });
-
-  stream.on("finish", () => {
-    console.log("Stream finished , end of the stream ");
-    console.timeEnd("write");
-  });
-})();
+module.exports = FileWriteStream;
