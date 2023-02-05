@@ -1,5 +1,5 @@
-const { Duplex } = require("stream");
-const fs = require("fs");
+const { Duplex } = require("node:stream");
+const fs = require("node:fs");
 
 class FileDuplexStream extends Duplex {
   constructor({
